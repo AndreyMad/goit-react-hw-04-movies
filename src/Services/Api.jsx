@@ -7,4 +7,8 @@ export const trendigFilmRequest = () => {
     `https://api.themoviedb.org/3/trending/all/day?api_key=${apiKey}`
   );
 };
-export const w = 123;
+export const searchFimByQuery = query => {
+  return axios.get(
+    `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
+  );
+};

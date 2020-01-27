@@ -1,11 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .list {
-  width: 100%;
+  width: 100vw;
   height: 40px;
   margin: 0px;
   list-style: none;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
 }
 .list_item {
   width: 80px;
