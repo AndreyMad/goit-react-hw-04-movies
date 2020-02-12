@@ -1,14 +1,17 @@
-/* eslint-disable import/extensions */
-import HomePage from "../pages/HomePage/HomePage.jsx";
+import HomePage from "../pages/HomePage/HomePage";
 import MoviesPage from "../pages/MoviesPage/MoviesPage";
-// import ShowDetailsPage from "../pages/ShowDetailsPage/ShowDetailsPage";
+import MoviesDetailsPage from "../pages/MoviesDetailsPage/MoviesDetailsPage";
 
 export default {
   HOME_PAGE: {
     path: "/",
     component: HomePage
   },
-  MOVIE_PAGE: {
+  MOVIE_DETAILS_PAGE: {
+    path: "/movie/:moviId",
+    component: MoviesDetailsPage
+  },
+  MOVIES_PAGE: {
     path: "/movie",
     component: MoviesPage
   }

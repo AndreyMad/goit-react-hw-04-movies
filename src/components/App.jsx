@@ -15,9 +15,13 @@ function App() {
           component={routes.HOME_PAGE.component}
         />
         <Route
-          path={routes.MOVIE_PAGE.path}
+          path={routes.MOVIE_DETAILS_PAGE.path}
+          component={routes.MOVIE_DETAILS_PAGE.component}
+        />
+        <Route
           exact
-          component={routes.MOVIE_PAGE.component}
+          path={routes.MOVIES_PAGE.path}
+          component={routes.MOVIES_PAGE.component}
         />
         <Redirect to={routes.HOME_PAGE.path} />
       </Switch>

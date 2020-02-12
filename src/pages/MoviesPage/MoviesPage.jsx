@@ -51,6 +51,7 @@ class Movie extends Component {
     return (
       <div>
         <Searchbar onSubmit={this.search} />
+
         <ul>
           {shows.map(el => (
             <li key={el.id}>

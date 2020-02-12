@@ -16,7 +16,7 @@ const Navigation = () => {
         </NavLink>
       </li>
       <li className={style.list_item}>
-        <NavLink activeStyle={{ color: "red" }} to={routes.MOVIE_PAGE.path}>
+        <NavLink activeStyle={{ color: "red" }} to={routes.MOVIES_PAGE.path}>
           Movie
         </NavLink>
       </li>

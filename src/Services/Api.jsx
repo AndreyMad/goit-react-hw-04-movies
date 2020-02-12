@@ -12,3 +12,8 @@ export const searchFimByQuery = query => {
     `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`
   );
 };
+export const searcShowById = id => {
+  return axios.get(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
+  );
+};
