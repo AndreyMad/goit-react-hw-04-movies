@@ -1,11 +1,19 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import * as api from "../../Services/Api";
 import style from "./MoviesDetailsPage.module.css";
 
 class MoviesDetailsPage extends Component {
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        moviId: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired
+  };
+
   state = {
-    show: {},
-    imgSrc: ""
+    show: {}
   };
 
   componentDidMount() {
@@ -30,7 +38,7 @@ class MoviesDetailsPage extends Component {
             {`${show.title} (${show.release_date})`}{" "}
           </h2>
           <img
-            src={`https://image.tmdb.org/t/p/w300${show.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w400${show.poster_path}`}
             className={style.showImage}
             alt="film prewiev "
           />
