@@ -17,3 +17,13 @@ export const searcShowById = id => {
     `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`
   );
 };
+export const getCast = id => {
+  return axios.get(
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apiKey}`
+  );
+};
+export const getReviews = id => {
+  return axios.get(
+    `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${apiKey}&language=en-US`
+  );
+};

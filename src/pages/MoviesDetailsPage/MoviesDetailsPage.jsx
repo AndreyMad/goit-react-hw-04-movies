@@ -1,13 +1,22 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 import * as api from "../../Services/Api";
 import style from "./MoviesDetailsPage.module.css";
+import Cast from "../../components/Cast/Cast";
+import Reviews from "../../components/Reviews/Reviews";
 
 class MoviesDetailsPage extends Component {
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.shape({
         moviId: PropTypes.string.isRequired
+      }).isRequired,
+      url: PropTypes.string.isRequired
+    }).isRequired,
+    location: PropTypes.shape({
+      state: PropTypes.shape({
+        from: PropTypes.string.isRequired
       }).isRequired
     }).isRequired
   };
@@ -17,7 +26,9 @@ class MoviesDetailsPage extends Component {
     title: "",
     releaseDate: "",
     userScore: "",
-    genres: []
+    genres: [],
+    cast: null,
+    reviews: null
   };
 
   componentDidMount() {
@@ -41,6 +52,30 @@ class MoviesDetailsPage extends Component {
       });
   }
 
+  showCast = id => {
+    api
+      .getCast(id)
+      .then(res => {
+        const arr = res.data.cast.slice(0, 15);
+
+        this.setState({ cast: arr, reviews: null });
+      })
+      .catch(err => {
+        throw new Error(err);
+      });
+  };
+
+  showReview = id => {
+    api
+      .getReviews(id)
+      .then(res => {
+        this.setState({ reviews: res.data.results, cast: null });
+      })
+      .catch(err => {
+        throw new Error(err);
+      });
+  };
+
   render() {
     const {
       imgSrc,
@@ -48,8 +83,11 @@ class MoviesDetailsPage extends Component {
       title,
       userScore,
       genres,
-      overview
+      overview,
+      cast,
+      reviews
     } = this.state;
+    const { match, location } = this.props;
 
     return (
       <>
@@ -75,6 +113,35 @@ class MoviesDetailsPage extends Component {
             </div>
           </div>
         </div>
+        <ul className={style.addInfo}>
+          <li>
+            <NavLink
+              activeStyle={{ color: "green" }}
+              to={{
+                pathname: `${match.url}/cast`,
+                state: { from: location.state.from }
+              }}
+              onClick={() => this.showCast(match.params.moviId)}
+            >
+              Cast
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              activeStyle={{ color: "green" }}
+              to={{
+                pathname: `${match.url}/review`,
+                state: { from: location.state.from }
+              }}
+              onClick={() => this.showReview(match.params.moviId)}
+            >
+              Review
+            </NavLink>
+          </li>
+        </ul>
+
+        {cast ? <Cast cast={cast} /> : null}
+        {reviews ? <Reviews reviews={reviews} /> : null}
       </>
     );
   }

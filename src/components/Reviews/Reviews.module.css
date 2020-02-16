@@ -1,0 +1,11 @@
+.title {
+  display: block;
+  font-weight: bold;
+}
+.text {
+  display: block;
+  margin: 10px;
+}
+.wrapper {
+  margin: 20px;
+}

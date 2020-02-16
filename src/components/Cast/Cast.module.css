@@ -1,0 +1,15 @@
+.castWrapper {
+  display: flex;
+  max-width: 100vw;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.castWrapper > li {
+  width: 15%;
+
+  margin: 10px;
+}
+.castWrapper > li > img {
+  width: 100%;
+  height: 80%;
+}
