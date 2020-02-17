@@ -5,6 +5,7 @@ import * as api from "../../Services/Api";
 import style from "./MoviesDetailsPage.module.css";
 import Cast from "../../components/Cast/Cast";
 import Reviews from "../../components/Reviews/Reviews";
+import GoBack from "../../components/GoBack/GoBack";
 
 class MoviesDetailsPage extends Component {
   static propTypes = {
@@ -16,8 +17,11 @@ class MoviesDetailsPage extends Component {
     }).isRequired,
     location: PropTypes.shape({
       state: PropTypes.shape({
-        from: PropTypes.string.isRequired
+        from: PropTypes.shape({}).isRequired
       }).isRequired
+    }).isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired
     }).isRequired
   };
 
@@ -76,6 +80,16 @@ class MoviesDetailsPage extends Component {
       });
   };
 
+  goBack = () => {
+    const { history, location } = this.props;
+
+    if (location.state) {
+      history.push(location.state.from);
+      return;
+    }
+    history.push("/");
+  };
+
   render() {
     const {
       imgSrc,
@@ -91,6 +105,7 @@ class MoviesDetailsPage extends Component {
 
     return (
       <>
+        <GoBack goBack={this.goBack} />
         <div className={style.container}>
           <div className={style.wrapper}>
             <img

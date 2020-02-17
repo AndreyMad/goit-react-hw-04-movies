@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import style from "./Searchbar.module.css";
 
 class Searchbar extends Component {
   state = {
@@ -26,8 +27,14 @@ class Searchbar extends Component {
     const { value } = this.state;
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input value={value} onChange={this.handleChange} type="text" />
+      <form className={style.form_group} onSubmit={this.onSubmit}>
+        <input
+          value={value}
+          onChange={this.handleChange}
+          type="text"
+          placeholder="Enter some text"
+        />
+
         <button type="submit">Search</button>
       </form>
     );
