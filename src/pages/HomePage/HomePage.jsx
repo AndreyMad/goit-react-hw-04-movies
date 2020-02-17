@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { trendigFilmRequest } from "../../Services/Api";
 import FilmsList from "../../components/FilmsList/FilmsList";
+import style from "./HomePage.module.css";
 
 class HomePage extends Component {
   state = {
@@ -19,7 +20,7 @@ class HomePage extends Component {
 
     return (
       <>
-        <h2>Trending today</h2>
+        <h2 className={style.title}>Trending today</h2>
 
         <FilmsList shows={shows} />
       </>
