@@ -19,7 +19,6 @@ function App() {
           component={routes.MOVIE_DETAILS_PAGE.component}
         />
         <Route
-          exact
           path={routes.MOVIES_PAGE.path}
           component={routes.MOVIES_PAGE.component}
         />

@@ -25,6 +25,7 @@ class Movie extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     const { location } = this.props;
 
     if (location.search) {
