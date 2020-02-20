@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Searchbar from "../../components/Searchbar/Searchbar";
 import * as api from "../../Services/Api";
+import FilmsList from "../../components/FilmsList/FilmsList";
 
 const queryString = require("query-string");
 
@@ -25,7 +26,6 @@ class Movie extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     const { location } = this.props;
 
     if (location.search) {
@@ -48,26 +48,11 @@ class Movie extends Component {
 
   render() {
     const { shows } = this.state;
-    const { location, match } = this.props;
+    const { location } = this.props;
     return (
       <div>
         <Searchbar onSubmit={this.search} />
-
-        <ul>
-          {shows.map(el => (
-            <li key={el.id}>
-              <Link
-                to={{
-                  pathname: `${match.url}/${el.id}`,
-                  state: { from: { ...location } },
-                  search: `show=${el.title}`
-                }}
-              >
-                {el.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <FilmsList shows={shows} location={location} />
       </div>
     );
   }

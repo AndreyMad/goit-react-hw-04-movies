@@ -35,7 +35,7 @@ class Searchbar extends Component {
           placeholder="Enter some text"
         />
 
-        <button type="submit">Search</button>
+        <button type="submit" />
       </form>
     );
   }

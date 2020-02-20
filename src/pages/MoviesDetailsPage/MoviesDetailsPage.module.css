@@ -40,3 +40,11 @@
 .text {
   font-size: 22px;
 }
+.addInfo {
+  list-style: none;
+  display: flex;
+  margin: 0px auto;
+  font-size: 18px;
+  width: 120px;
+  justify-content: space-around;
+}

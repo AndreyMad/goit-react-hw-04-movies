@@ -37,23 +37,26 @@ class MoviesDetailsPage extends Component {
 
   componentDidMount() {
     const { match } = this.props;
-    api
-      .searcShowById(match.params.moviId)
-      .then(res => {
-        this.setState({
-          imgSrc: res.data.poster_path,
-          releaseDate: res.data.release_date,
-          userScore: res.data.vote_average,
-          genres: [...res.data.genres],
-          title: res.data.title,
-          overview: res.data.overview
-        });
-        return res;
-      })
 
-      .catch(err => {
-        throw new Error(err);
-      });
+    if (match) {
+      api
+        .searcShowById(match.params.moviId)
+        .then(res => {
+          this.setState({
+            imgSrc: res.data.poster_path,
+            releaseDate: res.data.release_date,
+            userScore: res.data.vote_average,
+            genres: [...res.data.genres],
+            title: res.data.title,
+            overview: res.data.overview
+          });
+          return res;
+        })
+
+        .catch(err => {
+          throw new Error(err);
+        });
+    }
   }
 
   showCast = id => {
@@ -102,6 +105,7 @@ class MoviesDetailsPage extends Component {
       reviews
     } = this.state;
     const { match, location } = this.props;
+    console.log(match);
 
     return (
       <>
@@ -133,8 +137,7 @@ class MoviesDetailsPage extends Component {
             <NavLink
               activeStyle={{ color: "green" }}
               to={{
-                pathname: `${match.url}/cast`,
-                state: { from: location.state.from }
+                pathname: `${match.url}/cast`
               }}
               onClick={() => this.showCast(match.params.moviId)}
             >
@@ -145,8 +148,7 @@ class MoviesDetailsPage extends Component {
             <NavLink
               activeStyle={{ color: "green" }}
               to={{
-                pathname: `${match.url}/review`,
-                state: { from: location.state.from }
+                pathname: `${match.url}/review`
               }}
               onClick={() => this.showReview(match.params.moviId)}
             >
