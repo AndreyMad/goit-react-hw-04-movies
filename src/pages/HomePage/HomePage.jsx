@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import PropTypes from "prop-types";
 import { trendigFilmRequest } from "../../Services/Api";
 import FilmsList from "../../components/FilmsList/FilmsList";
@@ -7,8 +6,7 @@ import style from "./HomePage.module.css";
 
 class HomePage extends Component {
   static propTypes = {
-    location: PropTypes.shape({ state: PropTypes.shape({}).isRequired })
-      .isRequired,
+    location: PropTypes.shape({ state: PropTypes.shape({}) }).isRequired,
     history: PropTypes.shape({ push: PropTypes.func.isRequired }).isRequired
   };
 
@@ -29,12 +27,17 @@ class HomePage extends Component {
 
   render() {
     const { shows } = this.state;
-    // this.handleHistory();
+    const { location } = this.props;
+
     return (
       <>
         <h2 className={style.title}>Trending today</h2>
 
-        <FilmsList shows={shows} handleHistory={this.handleHistory} />
+        <FilmsList
+          shows={shows}
+          handleHistory={this.handleHistory}
+          location={location}
+        />
       </>
     );
   }

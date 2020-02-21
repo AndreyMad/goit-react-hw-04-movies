@@ -33,13 +33,13 @@ const FilmsList = ({ shows, handleHistory, location }) => {
 FilmsList.propTypes = {
   shows: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       title: PropTypes.string,
       poster_path: PropTypes.string.isRequired,
       name: PropTypes.string
     }).isRequired
   ).isRequired,
   handleHistory: PropTypes.func.isRequired,
-  location: PropTypes.shape.isRequired
+  location: PropTypes.shape({}).isRequired
 };
 export default FilmsList;
