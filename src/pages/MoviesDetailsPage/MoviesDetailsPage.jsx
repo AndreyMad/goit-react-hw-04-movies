@@ -6,6 +6,7 @@ import style from "./MoviesDetailsPage.module.css";
 import Cast from "../../components/Cast/Cast";
 import Reviews from "../../components/Reviews/Reviews";
 import GoBack from "../../components/GoBack/GoBack";
+import noImage from "../../assets/img/no_photo.png";
 
 class MoviesDetailsPage extends Component {
   static propTypes = {
@@ -18,7 +19,7 @@ class MoviesDetailsPage extends Component {
     location: PropTypes.shape({
       state: PropTypes.shape({
         from: PropTypes.shape({}).isRequired
-      }).isRequired
+      })
     }).isRequired,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired
@@ -104,8 +105,7 @@ class MoviesDetailsPage extends Component {
       cast,
       reviews
     } = this.state;
-    const { match, location } = this.props;
-    console.log(match);
+    const { match } = this.props;
 
     return (
       <>
@@ -113,7 +113,9 @@ class MoviesDetailsPage extends Component {
         <div className={style.container}>
           <div className={style.wrapper}>
             <img
-              src={`https://image.tmdb.org/t/p/w400${imgSrc}`}
+              src={
+                imgSrc ? `https://image.tmdb.org/t/p/w400${imgSrc}` : noImage
+              }
               className={style.showImage}
               alt="film prewiev "
             />

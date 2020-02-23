@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, { Component, lazy, Suspense } from "react";
 import PropTypes from "prop-types";
 import Searchbar from "../../components/Searchbar/Searchbar";
 import * as api from "../../Services/Api";
-import FilmsList from "../../components/FilmsList/FilmsList";
+import Loader from "../../components/Loader/Loader";
 
 const queryString = require("query-string");
+
+const FilmsList = lazy(() => import("../../components/FilmsList/FilmsList"));
 
 class Movie extends Component {
   state = {
@@ -52,7 +53,9 @@ class Movie extends Component {
     return (
       <div>
         <Searchbar onSubmit={this.search} />
-        <FilmsList shows={shows} location={location} />
+        <Suspense fallback={Loader}>
+          <FilmsList shows={shows} location={location} />
+        </Suspense>
       </div>
     );
   }

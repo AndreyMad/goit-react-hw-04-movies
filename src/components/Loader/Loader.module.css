@@ -1,0 +1,14 @@
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overlay > div {
+  width: 60px;
+  height: 60px;
+}
