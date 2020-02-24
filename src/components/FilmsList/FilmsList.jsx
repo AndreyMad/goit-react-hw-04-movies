@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import style from "./FilmsList.module.css";
 
-const FilmsList = ({ shows, handleHistory, location }) => {
+const FilmsList = ({ shows, location }) => {
   return (
     <ul className={style.item_Wrapper}>
       {shows.map(el => (
@@ -14,7 +14,6 @@ const FilmsList = ({ shows, handleHistory, location }) => {
               state: { from: { ...location } },
               search: `show=${el.title}`
             }}
-            onClick={handleHistory}
           >
             <div className={style.imageWrapper}>
               <img
@@ -39,7 +38,7 @@ FilmsList.propTypes = {
       name: PropTypes.string
     }).isRequired
   ).isRequired,
-  handleHistory: PropTypes.func.isRequired,
+
   location: PropTypes.shape({}).isRequired
 };
 export default FilmsList;

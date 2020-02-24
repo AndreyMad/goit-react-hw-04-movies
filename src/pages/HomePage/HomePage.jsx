@@ -33,11 +33,7 @@ class HomePage extends Component {
       <>
         <h2 className={style.title}>Trending today</h2>
 
-        <FilmsList
-          shows={shows}
-          handleHistory={this.handleHistory}
-          location={location}
-        />
+        <FilmsList shows={shows} location={location} />
       </>
     );
   }
