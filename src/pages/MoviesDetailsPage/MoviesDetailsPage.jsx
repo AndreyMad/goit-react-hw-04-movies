@@ -74,6 +74,7 @@ class MoviesDetailsPage extends Component {
   };
 
   showReview = id => {
+    const { history } = this.props;
     api
       .getReviews(id)
       .then(res => {
@@ -82,6 +83,7 @@ class MoviesDetailsPage extends Component {
       .catch(err => {
         throw new Error(err);
       });
+    history.push({ ...this.props.location });
   };
 
   goBack = () => {
@@ -105,8 +107,13 @@ class MoviesDetailsPage extends Component {
       cast,
       reviews
     } = this.state;
-    const { match } = this.props;
-
+    const { match, location } = this.props;
+    // eslint-disable-next-line no-nested-ternary
+    const locationToReturn = location.state
+      ? location.state.from
+        ? location.state.from
+        : "/"
+      : null;
     return (
       <>
         <GoBack goBack={this.goBack} />
@@ -139,7 +146,8 @@ class MoviesDetailsPage extends Component {
             <NavLink
               activeStyle={{ color: "green" }}
               to={{
-                pathname: `${match.url}/cast`
+                pathname: `${match.url}/cast`,
+                state: { from: locationToReturn }
               }}
               onClick={() => this.showCast(match.params.moviId)}
             >
@@ -150,7 +158,8 @@ class MoviesDetailsPage extends Component {
             <NavLink
               activeStyle={{ color: "green" }}
               to={{
-                pathname: `${match.url}/review`
+                pathname: `${match.url}/review`,
+                state: { from: locationToReturn }
               }}
               onClick={() => this.showReview(match.params.moviId)}
             >
