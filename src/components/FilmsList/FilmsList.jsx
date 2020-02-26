@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import style from "./FilmsList.module.css";
+import noImage from "../../assets/img/no_photo.png";
 
 const FilmsList = ({ shows, location }) => {
   return (
@@ -19,7 +20,11 @@ const FilmsList = ({ shows, location }) => {
               <img
                 className={style.filmImage}
                 alt="Film"
-                src={`https://image.tmdb.org/t/p/w400${el.poster_path}`}
+                src={
+                  el.poster_path
+                    ? `https://image.tmdb.org/t/p/w400${el.poster_path}`
+                    : noImage
+                }
               />
             </div>
             <span className={style.link}> {el.name || el.title}</span>
@@ -34,7 +39,7 @@ FilmsList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string,
-      poster_path: PropTypes.string.isRequired,
+      poster_path: PropTypes.string,
       name: PropTypes.string
     }).isRequired
   ).isRequired,

@@ -1,18 +1,31 @@
-import HomePage from "../pages/HomePage/HomePage";
-import MoviesPage from "../pages/MoviesPage/MoviesPage";
-import MoviesDetailsPage from "../pages/MoviesDetailsPage/MoviesDetailsPage";
+import { lazy } from "react";
+
+const asyncHome = lazy(() =>
+  import("../pages/HomePage/HomePage" /* webpackChunkName: "home-page" */)
+);
+
+const asyncMoviesDetailsPage = lazy(() =>
+  import(
+    "../pages/MoviesDetailsPage/MoviesDetailsPage" /* webpackChunkName: "asyncMoviesDetailsPage"  */
+  )
+);
+const asyncMoviesPage = lazy(() =>
+  import(
+    "../pages/MoviesPage/MoviesPage" /* webpackChunkName: "asyncMoviesPage"  */
+  )
+);
 
 export default {
   HOME_PAGE: {
     path: "/",
-    component: HomePage
+    component: asyncHome
   },
   MOVIE_DETAILS_PAGE: {
     path: "/movie/:moviId",
-    component: MoviesDetailsPage
+    component: asyncMoviesDetailsPage
   },
   MOVIES_PAGE: {
     path: "/movie",
-    component: MoviesPage
+    component: asyncMoviesPage
   }
 };
